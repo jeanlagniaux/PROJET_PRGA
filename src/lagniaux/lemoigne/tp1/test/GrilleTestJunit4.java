@@ -1,4 +1,4 @@
-package lagniaux.lemoigne.tp1.test;
+package lagniaux.lemoigne.tp1.test;/*pd*/
 import static org.junit.Assert.*;
 
 import org.junit.Before;
