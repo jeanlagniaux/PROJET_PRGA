@@ -99,4 +99,5 @@ public class MotsCroisesAvecHeritage<T> extends Grille<T> {
 		}
 		jeu.setCellule(lig, col, c);
 	}
+	
 }

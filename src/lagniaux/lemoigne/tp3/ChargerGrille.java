@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
+import lagniaux.lemoigne.tp2.Case;
 import lagniaux.lemoigne.tp2.MotsCroisesAvecHeritage;
 
 public class ChargerGrille {
@@ -50,13 +51,20 @@ public class ChargerGrille {
 		return disponible;
 	}
 
-	public MotsCroisesAvecHeritage extraireGrille(int numGrille) throws SQLException {
+	@SuppressWarnings("static-access")
+	public MotsCroisesAvecHeritage<Case> extraireGrille(int numGrille) throws SQLException {
 		PreparedStatement ps = this.connexion
 				.prepareStatement("SELECT hauteur,largeur FROM TP5_GRILLE WHERE num_grille = ?");
 		ps.setInt(1, numGrille);
 		ResultSet rs = ps.executeQuery();
 		rs.next();
-		MotsCroisesAvecHeritage mots = new MotsCroisesAvecHeritage(rs.getInt("hauteur"), rs.getInt("largeur"));
+		MotsCroisesAvecHeritage<Case> mots = new MotsCroisesAvecHeritage<Case>(rs.getInt("hauteur"),
+				rs.getInt("largeur"));
+		for (int i = 1; i < rs.getInt("hauteur"); i++) {
+			for (int j = 1; j < rs.getInt("largeur"); j++) {
+				mots.setSolution(i, j, '*');
+			}
+		}
 		ps.close();
 		rs.close();
 		ps = this.connexion.prepareStatement("SELECT * FROM TP5_MOT WHERE num_grille = ?");
@@ -66,20 +74,36 @@ public class ChargerGrille {
 			if (rs.getBoolean("horizontal")) {
 				int taille = rs.getString("solution").length();
 				for (int i = 0; i < taille; i++) {
-					mots.setSolution(rs.getInt("ligne"), rs.getInt("colonne") + i,
-							new Character(rs.getString("solution").charAt(i)));
+					Character car = new Character(rs.getString("solution").charAt(i));
+					mots.setSolution(rs.getInt("ligne"), rs.getInt("colonne") + i, car = car.toUpperCase(car));
+				}
+			} else {
+				int taille = rs.getString("solution").length();
+				for (int i = 0; i < taille; i++) {
+					Character car = new Character(rs.getString("solution").charAt(i));
+					mots.setSolution(rs.getInt("ligne") + i, rs.getInt("colonne"), car = car.toUpperCase(car));
 				}
 			}
 		}
-		return null;
+		return mots;
 	}
 
-	public static void main(String[] args) {
-		Integer gr = 10;
+	public static void main(String[] args) throws SQLException {
+		
+		String solution = "ARCHERDOUANEJUIN*BONT*VOID*GINN*RENDTIFOSI";
 		ChargerGrille chargerGrille = new ChargerGrille();
-
-		Map<Integer, String> dispo = chargerGrille.grillesDisponibles();
-		System.out.println(dispo.get(gr));
+		MotsCroisesAvecHeritage<Case> mots = chargerGrille.extraireGrille(10);
+		String reponse = "";
+		for (int i = 1; i < mots.getHauteur() + 1; i++) {
+			for (int j = 1; j < mots.getLargeur() + 1; j++) {
+				char c = mots.getSolution(i, j);
+				reponse += String.valueOf(c);
+			}
+		}
+		if(reponse.equals(solution)) {
+			System.out.println("true");
+		}
+		
 
 	}
 }
