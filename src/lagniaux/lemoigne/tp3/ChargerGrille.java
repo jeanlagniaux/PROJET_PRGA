@@ -51,7 +51,7 @@ public class ChargerGrille {
 		return disponible;
 	}
 
-	@SuppressWarnings("static-access")
+	
 	public MotsCroisesAvecHeritage<Case> extraireGrille(int numGrille) throws SQLException {
 		PreparedStatement ps = this.connexion
 				.prepareStatement("SELECT hauteur,largeur FROM TP5_GRILLE WHERE num_grille = ?");
@@ -75,13 +75,13 @@ public class ChargerGrille {
 				int taille = rs.getString("solution").length();
 				for (int i = 0; i < taille; i++) {
 					Character car = new Character(rs.getString("solution").charAt(i));
-					mots.setSolution(rs.getInt("ligne"), rs.getInt("colonne") + i, car = car.toUpperCase(car));
+					mots.setSolution(rs.getInt("ligne"), rs.getInt("colonne") + i, car = Character.toUpperCase(car));
 				}
 			} else {
 				int taille = rs.getString("solution").length();
 				for (int i = 0; i < taille; i++) {
 					Character car = new Character(rs.getString("solution").charAt(i));
-					mots.setSolution(rs.getInt("ligne") + i, rs.getInt("colonne"), car = car.toUpperCase(car));
+					mots.setSolution(rs.getInt("ligne") + i, rs.getInt("colonne"), car = Character.toUpperCase(car));
 				}
 			}
 		}

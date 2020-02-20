@@ -84,6 +84,11 @@ public class MorpionsTest
 		morpions.jouerCoup(2, 2);
 		assertFalse("La partie n'est pas finie",morpions.estFinie());
 	}
+	
+	@Test
+	public void testFinPartie() {
+		
+	}
 
 	@Test
 	public void testJoueur1gagnant() {
