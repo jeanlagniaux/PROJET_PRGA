@@ -51,7 +51,6 @@ public class ChargerGrille {
 		return disponible;
 	}
 
-	
 	public MotsCroisesAvecHeritage<Case> extraireGrille(int numGrille) throws SQLException {
 		PreparedStatement ps = this.connexion
 				.prepareStatement("SELECT hauteur,largeur FROM TP5_GRILLE WHERE num_grille = ?");
@@ -89,7 +88,7 @@ public class ChargerGrille {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		
+
 		String solution = "ARCHERDOUANEJUIN*BONT*VOID*GINN*RENDTIFOSI";
 		ChargerGrille chargerGrille = new ChargerGrille();
 		MotsCroisesAvecHeritage<Case> mots = chargerGrille.extraireGrille(10);
@@ -100,10 +99,9 @@ public class ChargerGrille {
 				reponse += String.valueOf(c);
 			}
 		}
-		if(reponse.equals(solution)) {
+		if (reponse.equals(solution)) {
 			System.out.println("true");
 		}
-		
 
 	}
 }

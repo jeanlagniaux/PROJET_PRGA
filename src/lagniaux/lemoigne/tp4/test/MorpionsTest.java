@@ -85,10 +85,7 @@ public class MorpionsTest
 		assertFalse("La partie n'est pas finie",morpions.estFinie());
 	}
 	
-	@Test
-	public void testFinPartie() {
-		
-	}
+
 
 	@Test
 	public void testJoueur1gagnant() {
@@ -97,6 +94,7 @@ public class MorpionsTest
 		morpions.jouerCoup(1, 2);
 		morpions.jouerCoup(2, 3);
 		morpions.jouerCoup(1, 3);
+		
 		assertEquals("Le joueur 1 doit être gagnant",1,morpions.getVainqueur());
 	}
 	
