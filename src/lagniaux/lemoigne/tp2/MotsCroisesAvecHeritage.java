@@ -45,7 +45,7 @@ public class MotsCroisesAvecHeritage<T> extends Grille<T> {
 		} else {
 			c.estCaseNoire = false;
 			c.solution = ' ';
-			jeu.setCellule(lig, col, c);
+			jeu.setCellule(lig, col,c);
 		}
 
 	}

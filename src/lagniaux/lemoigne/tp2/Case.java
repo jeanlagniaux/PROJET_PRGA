@@ -6,5 +6,5 @@ public class Case {
 	String horizontal;
 	String vertical;
 	
-	boolean estCaseNoire=true;
+	boolean estCaseNoire=false;
 }
