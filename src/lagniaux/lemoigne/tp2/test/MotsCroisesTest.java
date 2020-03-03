@@ -1,10 +1,9 @@
 package lagniaux.lemoigne.tp2.test;
 import static org.junit.jupiter.api.Assertions.*;
-
+import lagniaux.lemoigne.tp2.MotsCroises;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import lagniaux.lemoigne.tp2.MotsCroises;
 
 public class MotsCroisesTest
 {

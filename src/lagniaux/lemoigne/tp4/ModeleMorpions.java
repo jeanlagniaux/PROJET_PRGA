@@ -1,6 +1,5 @@
 package lagniaux.lemoigne.tp4;
 
-import javafx.beans.property.ReadOnlyIntegerWrapper;
 
 public class ModeleMorpions implements SpecifModeleMorpions {
 	private int[][] grille;
